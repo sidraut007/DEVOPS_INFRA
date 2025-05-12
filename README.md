@@ -73,9 +73,9 @@ docker-compose up -d
 		URL: http://Jenkins-public-ip:8080/sonar-webhook/
 
   - SONAR-TOKEN: 
-	Admimistartion --> Security --> users--> Genrate Token
+	- 	Admimistartion --> Security --> users--> Genrate Token
 			OR
-        Project Settings → General → Webhooks
+        	Project Settings → General → Webhooks
 
 - Test Webhook from Sonar Container
     ```
