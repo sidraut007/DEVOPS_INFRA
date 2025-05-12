@@ -10,9 +10,12 @@ RUN apt-get update && \
     apt-get update && \
     apt-get install -y docker-ce-cli git
 
-# Optionally install Docker Compose v2
+# Install Docker Compose v2
 RUN curl -SL https://github.com/docker/compose/releases/download/v2.23.3/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose && \
     chmod +x /usr/local/bin/docker-compose
+
+# Install Trivy
+RUN curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
 
 # Create docker group (if not exists) and add jenkins to it
 RUN groupadd -f docker && usermod -aG docker jenkins
@@ -21,4 +24,3 @@ RUN groupadd -f docker && usermod -aG docker jenkins
 RUN chown -R jenkins:jenkins /var/jenkins_home
 
 USER jenkins
-
