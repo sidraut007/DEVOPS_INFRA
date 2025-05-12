@@ -68,12 +68,13 @@ docker-compose up -d
 
 - Configure a webhook under:
   - WEBHOOK:
-	-	```
+	-	```bash
 		Administartion -> Configuration -> Webhooks -> Create Webhook ()
 		Name: Jenkins
 		URL: http://Jenkins-public-ip:8080/sonar-webhook/
 				OR
-		Project Settings → General → Webhooks	```
+		Project Settings → General → Webhooks	
+		```
 
   - SONAR-TOKEN: 
 	- 	Admimistartion --> Security --> users--> Genrate Token        	
