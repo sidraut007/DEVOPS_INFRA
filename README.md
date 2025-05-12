@@ -33,12 +33,15 @@ docker-compose up -d
 ### 3. 👷 Configure Jenkins
 
 - Install suggested plugins, then install:
-
-    - pipeline-stage-view
-    - Maven
-    - SonarQube Scanner
-    - Docker Pipeline
-    - Nexus Artifact Uploader
+	1. SonarQube Scanner
+	2. Config File Provider
+	3. Maven Integration
+	4. Pipeline Maven Integration
+	5. Kubernetes Credentials
+	6. Kubernetes
+	7. Kubernetes CLI
+	8. Kubernetes Client API
+	9. Docker Pipeline
 
 - Configure global tools under Manage Jenkins → Global Tool Configuration:
     - Maven, Sonar-Scanner, 
