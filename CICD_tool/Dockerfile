@@ -18,13 +18,18 @@ RUN curl -SL https://github.com/docker/compose/releases/download/v2.23.3/docker-
 RUN curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
 
 # Install kubectl
-RUN curl -LO "https://dl.k8s.io/release/$(curl -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" && \
-    chmod +x kubectl && mv kubectl /usr/local/bin/
+RUN curl -sSL https://dl.k8s.io/release/stable.txt -o /tmp/kubectl_version && \
+    curl -sSL https://dl.k8s.io/release/$(cat /tmp/kubectl_version)/bin/linux/amd64/kubectl -o /usr/local/bin/kubectl && \
+    chmod +x /usr/local/bin/kubectl && \
+    rm -f /tmp/kubectl_version
+
 
 # Create docker group (if not exists) and add jenkins to it
 RUN groupadd -f docker && usermod -aG docker jenkins
 
 # Fix ownership of Jenkins home
 RUN chown -R jenkins:jenkins /var/jenkins_home
+
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 USER jenkins
