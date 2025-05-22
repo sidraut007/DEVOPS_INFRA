@@ -17,6 +17,10 @@ RUN curl -SL https://github.com/docker/compose/releases/download/v2.23.3/docker-
 # Install Trivy
 RUN curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
 
+# Install kubectl
+RUN curl -LO "https://dl.k8s.io/release/$(curl -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" && \
+    chmod +x kubectl && mv kubectl /usr/local/bin/
+
 # Create docker group (if not exists) and add jenkins to it
 RUN groupadd -f docker && usermod -aG docker jenkins
 
